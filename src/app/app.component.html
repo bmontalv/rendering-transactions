@@ -1,0 +1,66 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+
+<div>
+  <div class="selector">
+      <div id="select-container">
+        <label>Transaction Type</label>
+        <select (change)="getTransactions()" [(ngModel)]='transaction.action'>
+            <option *ngFor="let option of transaction.actionOptions" [value]="option.value">{{option.value}}</option>
+        </select>
+        
+        <label >Currencies</label>
+        <select (change)="getTransactions()" [(ngModel)]='transaction.currency'>
+            <option *ngFor="let option of transaction.currencyOptions" [value]="option.value">{{option.value}}</option>
+        </select>
+      </div>
+      
+</div>
+  
+  <table class="table table-striped"  [mfData]="_transactionData" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+    <tr>
+        <th style="width: 10%">
+            <mfDefaultSorter by="name">Name</mfDefaultSorter>
+        </th>
+        <th style="width: 5%">
+            <mfDefaultSorter by="brand">Brand</mfDefaultSorter>
+        </th>
+        <th style="width: 20%">
+            <mfDefaultSorter by="last4digit">Last 4 digits</mfDefaultSorter>
+        </th>
+        <th style="width: 20%">
+            <mfDefaultSorter by="transactionType">Transaction type</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <mfDefaultSorter by="currency">Currency</mfDefaultSorter>
+    </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of mf.data">
+        <td style="width: 10%">{{item.name}}</td>
+        <td style="width: 5%">{{item.brand}}</td>
+        <td>xxxx {{item.last4digit}}</td>
+        <td>{{item.transactionType | uppercase}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.currency}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+        </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
