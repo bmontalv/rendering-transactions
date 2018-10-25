@@ -31,6 +31,7 @@ export class AppComponent {
     ]
   }
   private _transactionData: any []
+  public rowIndex = -1;
 
   getTransactions() {
     this.appService.getTransactions(this.transaction.action, this.transaction.currency).subscribe(
@@ -39,5 +40,17 @@ export class AppComponent {
         
       }
     )
+  }
+
+  setRowIndex(index) {
+    this.rowIndex = index;
+  }
+
+  setRowClass(index) {
+    if (index == this.rowIndex) {
+      return 'show-row';
+    } else {
+      return 'hidden-row';
+    }
   }
 }

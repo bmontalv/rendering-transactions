@@ -27,8 +27,21 @@ export class AppService {
         (response: any) => {
           var transactions: any = []
           response.forEach(element => {
-            transactions.push({name: element.card.holderName, brand: element.brandId, last4digit: element.card.lastFourDigits,
-              transactionType: element.action, amount: element.amount, currency: element.currencyCode})
+            transactions.push({
+              name: element.card.holderName, 
+              brand: element.brandId, 
+              last4digit: element.card.lastFourDigits,
+              transactionType: element.action, 
+              amount: element.amount, 
+              currency: element.currencyCode,
+              otherData: {
+                id: element.id, 
+                trackingCode: element.trackingCode, 
+                first6digit: element.card.firstSixDigits,
+                expiryMonth: element.card.expiryMonth,
+                expiryYear: element.card.expiryYear
+              }
+            })
           })
           return transactions
         }

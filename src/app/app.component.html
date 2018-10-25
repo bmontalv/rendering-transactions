@@ -45,14 +45,30 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of mf.data">
-        <td style="width: 10%">{{item.name}}</td>
-        <td style="width: 5%">{{item.brand}}</td>
-        <td>xxxx {{item.last4digit}}</td>
-        <td>{{item.transactionType | uppercase}}</td>
-        <td>{{item.amount}}</td>
-        <td>{{item.currency}}</td>
-    </tr>
+        <ng-container *ngFor="let item of mf.data; let i = index">
+            <tr  (click)="setRowIndex(i)">
+                <td>{{item.name}}</td>
+                <td>{{item.brand}}</td>
+                <td>xxxx {{item.last4digit}}</td>
+                <td>{{item.transactionType | uppercase}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.currency}}</td>
+            </tr>
+            <tr [ngClass]="setRowClass(i, class)" class="details">
+                <td>
+                    <p>Id: {{item.otherData.id}}</p>
+                    <p>Tracking Code: {{item.otherData.trackingCode}}</p>
+                    <p>Brand ID: {{item.brand}}</p>
+                </td>
+                <td>
+                    <p>First 6 Digits: {{item.otherData.first6digit}}</p>
+                    <p>Expiry month: {{item.otherData.expiryMonth}}</p>
+                    <p>Expiry year: {{item.otherData.expiryYear}}</p>
+                </td>
+            </tr>
+
+        </ng-container>
+    
     </tbody>
     <tfoot>
     <tr>

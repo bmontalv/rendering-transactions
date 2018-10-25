@@ -21,3 +21,20 @@ label {
     padding-right: 5px;
     padding-left: 25px;
 }
+
+.show-row {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 30%;
+}
+
+.hidden-row {
+    display: none;
+}
+
+.details {
+    position: relative;
+    width: 35rem;
+    height: 10rem;
+}
